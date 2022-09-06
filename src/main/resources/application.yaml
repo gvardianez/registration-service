@@ -1,0 +1,4 @@
+server:
+  port: 8188
+  servlet:
+    context-path: /registration-service
