@@ -15,7 +15,7 @@ public interface Mapper<T extends Entity> {
 
     Map<Long, T> getIdentityMap();
 
-    Optional<T> findByString(String s);
+//    Optional<T> findByString(String s);
 
     void update(List<T> entities);
 
