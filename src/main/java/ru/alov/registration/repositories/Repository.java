@@ -1,6 +1,5 @@
 package ru.alov.registration.repositories;
 
-import org.springframework.stereotype.Component;
 import ru.alov.registration.entities.Entity;
 import ru.alov.registration.orm.Mapper;
 import ru.alov.registration.orm.UnitOfWork;
@@ -9,16 +8,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
 
-@Component
-public class Repository<T extends Entity> {
+public abstract class Repository<T extends Entity> {
 
-    private final Connection conn;
+    protected final Connection conn;
 
-    private final Mapper<T> mapper;
+    protected final Mapper<T> mapper;
 
-    private final UnitOfWork<T> unitOfWork;
+    protected final UnitOfWork<T> unitOfWork;
 
-    private boolean isTransactionOpen;
+    protected boolean isTransactionOpen;
 
     public Repository(Connection conn, Mapper<T> mapper, UnitOfWork<T> unitOfWork) {
         this.conn = conn;
@@ -28,10 +26,6 @@ public class Repository<T extends Entity> {
 
     public Optional<T> findById(Long id) {
         return mapper.findById(id);
-    }
-
-    public Optional<T> findByString(String s) {
-        return mapper.findByString(s);
     }
 
     public void beginTransaction() {

@@ -14,7 +14,6 @@ import java.sql.SQLException;
 
 
 @Configuration
-@PropertySource("classpath:database.properties")
 public class AppConfig {
 
     @Value("${database.url}")

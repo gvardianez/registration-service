@@ -9,6 +9,7 @@ import ru.alov.registration.entities.User;
 import ru.alov.registration.exceptions.FieldValidationException;
 import ru.alov.registration.exceptions.ResourceNotFoundException;
 import ru.alov.registration.repositories.Repository;
+import ru.alov.registration.repositories.UserRepository;
 import ru.alov.registration.validators.RegistrationValidator;
 import ru.alov.registration.validators.UpdatePasswordValidator;
 
@@ -20,14 +21,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final Repository<User> userRepository;
+    private final UserRepository userRepository;
 
     private final RegistrationValidator registrationValidator;
 
     private final UpdatePasswordValidator updatePasswordValidator;
 
     public Optional<User> findByUsername(String username) {
-        return userRepository.findByString(username);
+        return userRepository.findByLogin(username);
     }
 
     public User createNewUser(RegistrationUserDto registrationUserDto) {

@@ -90,7 +90,6 @@ public class UserMapper implements Mapper<User> {
             updateUser.setString(1, user.getLogin());
             updateUser.setString(2, user.getPassword());
             updateUser.setLong(3, user.getId());
-            System.out.println(user.getPassword());
             updateUser.executeUpdate();
             identityMap.put(user.getId(), user);
         } catch (SQLException e) {
